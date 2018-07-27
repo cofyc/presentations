@@ -1,0 +1,101 @@
+Kubernetes Scheduling 101
+How does the kuberntes scheduler work
+27 Jul 2018
+
+Yecheng Fu
+cofyc.jackson@gmail.com
+@cofyc
+https://yechengfu.com
+
+* What is scheduling?
+
+Assign pods to nodes
+
+- Correctly
+- Efficiently
+- Intelligently
+
+By default, kube-scheduler component does this work.
+
+* What is the kube-scheduler
+
+- A client program to kube-apiserver
+- A controller too, like kube-contorller-mananger
+
+* What does kube-scheduler do
+
+- Assign not-assigned pod to node 
+- Volume scheduling (v1.9+)
+
+* How does kube-scheduler work (basic)
+
+.code basic.go
+
+- Pick a pod from queue
+- Find a fit node
+- Assign pod to that node
+- Repeat
+
+This is single threaded.
+
+* How does kube-scheduler work (advanced)
+
+.image kubernetes-scheduling.png
+
+- Scheduler get pod one by one from pod queue
+- Scheduler evaluate predicates for given pod on all nodes
+- Priorities and choose one of highest score if more than 1 nodes found feasible
+- Assume this pod is assigned to this node
+- Bind this pod is assigned to this node asynchronously
+- Repeat
+
+* How does kube-scheduelr work (volume scheduling)
+
+.image kubernetes-scheduling-volume.png
+
+- Work with PV controller to bind pre-provisioned PVs which has topology
+constraints.
+
+- Work with PV controller to provision PVs which has topology constraints
+dynamically.
+
+* Scheduler Policies
+
+Users can use following mecheniams to control how scheduler schedule pod.
+
+- Node affinity / anti-affinity (and nodeSelector)
+
+	which nodes are required or preferred 
+
+- Taints and tolerations
+
+- Pod affinity / anti-affinity
+
+	how pods should be placed relative to one another
+
+- Priorities
+	
+	priority for workloads
+
+* Schedule Polices TBD
+
+- Gang scheduling
+
+* If default scheduler does not work for you
+
+Specify _pod.Spec.nodeName_ to schedule pod manually.
+
+Use other schedulers:
+
+- Run your own scheduler
+- Specify _pod.Spec.scheduelrName_ to your scheduler name
+
+Third party schedulers:
+
+- https://github.com/kubernetes-incubator/kube-arbitrator
+
+* References
+
+.link https://kubernetes.io/blog/2017/03/advanced-scheduling-in-kubernetes/ Advanced Scheduling in Kubernetes
+.link https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/volume-topology-scheduling.md Volume Topology-aware Scheduling
+.link https://github.com/kubernetes/community/pull/2337 KEP: Gang scheduling

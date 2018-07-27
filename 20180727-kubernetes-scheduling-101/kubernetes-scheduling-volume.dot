@@ -1,0 +1,16 @@
+digraph G {
+    rankdir = LR
+    nodesep = 0.5
+    ranksep = 0.5
+    node [shape=record]
+
+    "Pods Queue" -> "Predicates and Priorities" [weight=10]
+    "Predicates and Priorities" -> "Find node?" [weight=10]
+    "Find node?" -> "PV binding required?" [weight=10]
+    "PV binding required?" -> "Assume and bind pod" [weight=10, label="No"]
+    "PV binding required?" -> "Assume and bind PV" [label="Yes", weight=1]
+    "Assume and bind PV" -> "Pods Queue" [weight=1]
+    "Find node?" -> "Pods Queue" [label="Not Found", tailport=s, headport=s, weight=1]
+
+    {rank=same; "PV binding required?" [color=red]; "Assume and bind PV" [color=red]}
+}

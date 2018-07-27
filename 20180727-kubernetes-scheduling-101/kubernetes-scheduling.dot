@@ -1,0 +1,11 @@
+digraph G {
+    rankdir = LR
+    nodesep = 1
+    ranksep = 0.75
+    node [shape=record]
+
+    "Pods Queue" -> "Predicates and Priorities" [weight=2]
+    "Predicates and Priorities" -> "Find node?" [weight=2]
+    "Find node?" -> "Assume and bind pod" [weight=2]
+    "Find node?" -> "Pods Queue" [label="Not Found", tailport=s, headport=s, weight=1]
+}
