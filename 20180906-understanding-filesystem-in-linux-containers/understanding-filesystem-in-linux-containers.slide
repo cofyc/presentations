@@ -7,7 +7,7 @@ cofyc.jackson@gmail.com
 @cofyc
 https://yechengfu.com
 
-* Understand Linux VFS (Virtual File System) first
+* Understand Linux VFS first
 
 *One:* The Virtual File System provides a uniform interface (one big tree
 structure) within the kernel which allows different filesystems to coexist.
@@ -16,25 +16,31 @@ Filesystems kernel supports:
 
 .code filesystems.txt
 
-* Understand Linux VFS (Virtual File System) first
+Note:
 
-*Two:* We can register or unregister filesystems into this one big tree by
+- VFS: Virtual File System
+
+* Understand Linux VFS first
+
+*Two:* It's able to register or unregister filesystems into this one big tree by
 mounting or unmounting.
 
 .code mounting.txt
 
-unmounting:
+Tells the kernel to attach the filesystem found on *source* (e.g. device or anoynymous storage) at target directory.
 
 .code unmounting.txt
 
-* Understand Linux VFS (Virtual File System) first
+Detaches file system(s) from the file hierarchy.
 
-*Three*: Each process can have its own mount namespace and mount and unmounts
-in it.
+* Understand Linux VFS first
+
+*Three*: Each process can have its own mount namespace and do mounting and
+unmounting in it.
 
 .code unshare_mount.txt
 
-* Understand Linux VFS (Virtual File System) first
+* Understand Linux VFS first
 
 *Four*: Different mount namespaces can share mount points through binding.
 
@@ -43,10 +49,9 @@ namespace (e.g. host namespace).
 
 .code unshare_mount2.txt
 
-Binding remounts a subtree somewhare else, so that its contents are
-available in both places.
+Note: Bind remounts a subtree somewhare else, so that its contents are available in both places.
 
-* Understand Linux VFS (Virtual File System) first
+* Understand Linux VFS first
 
 *Five*: Mount point can have different states
 
@@ -56,10 +61,18 @@ available in both places.
 - shared and slave: It receives propagation events from its master vfsmount, and also forwards propagation events to its peer group. 
 - unbindable: Do not receive or forward any propagation events and cannot be bind mounted.
 
-Note: 
+Note:
 
-- Rbind is same as bind except it applies to all the mounts in the tree. 
+- The propagation tree is orthogonal to the mount tree and mount namespace.
 - Only a slave vfsmount can be made as 'shared and slave' by making it shared again. e.g. run a new container in container, and share mounts with it.
+
+* Understand Linux VFS first
+
+*Six*: More mounting semantics.
+
+- rbind: Bind recursively, same as bind except it applies to all the mounts in the tree. 
+- move: Move a mountpoint to another place.
+- mount options: ro/rw,sync, etc. and filesystem-specific options.
 
 * Typical isolated virtual filesystem of a container
 

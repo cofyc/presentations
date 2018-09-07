@@ -1,9 +1,8 @@
-# findmnt -R /tmp
-TARGET SOURCE FSTYPE OPTIONS
-/tmp   tmpfs  tmpfs  rw,nosuid,nodev,relatime,size=6291456k
-# mkdir /tmp/test
+# mkdir /tmp/{test,test2}
 # mount -t tmpfs -osize=102400 tmpfs /tmp/test
+# mount /dev/sda1 /tmp/test2
 # findmnt -R /tmp
-TARGET      SOURCE FSTYPE OPTIONS
-/tmp        tmpfs  tmpfs  rw,nosuid,nodev,relatime,size=6291456k
-└─/tmp/test tmpfs  tmpfs  rw,relatime,size=100k
+TARGET       SOURCE    FSTYPE OPTIONS
+/tmp         tmpfs     tmpfs  rw,nosuid,nodev,relatime,size=6291456k
+├─/tmp/test2 /dev/sda1 ext2   rw,relatime,block_validity,barrier,user_xattr,acl
+└─/tmp/test  tmpfs     tmpfs  rw,relatime,size=100k
