@@ -1,0 +1,4 @@
+# umount /tmp/test
+# findmnt -R /tmp
+TARGET SOURCE FSTYPE OPTIONS
+/tmp   tmpfs  tmpfs  rw,nosuid,nodev,relatime,size=6291456k

@@ -1,0 +1,12 @@
+$ cat /proc/filesystems
+nodev	sysfs
+nodev	proc
+nodev	cpuset
+nodev	cgroup
+nodev	tmpfs
+	ext3
+	ext2
+	ext4
+nodev	hugetlbfs
+nodev	fuse
+nodev	ceph

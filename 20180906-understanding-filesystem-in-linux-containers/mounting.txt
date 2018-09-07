@@ -1,0 +1,9 @@
+# findmnt -R /tmp
+TARGET SOURCE FSTYPE OPTIONS
+/tmp   tmpfs  tmpfs  rw,nosuid,nodev,relatime,size=6291456k
+# mkdir /tmp/test
+# mount -t tmpfs -osize=102400 tmpfs /tmp/test
+# findmnt -R /tmp
+TARGET      SOURCE FSTYPE OPTIONS
+/tmp        tmpfs  tmpfs  rw,nosuid,nodev,relatime,size=6291456k
+└─/tmp/test tmpfs  tmpfs  rw,relatime,size=100k

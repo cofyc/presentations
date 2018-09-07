@@ -1,0 +1,16 @@
+TARGET                      SOURCE                                              FSTYPE
+--------------------------------------------------------------------------------------
+/                           overlay                                             overlay
+/-/proc                     proc                                                proc
+/-/dev                      tmpfs                                               tmpfs
+/ |-/dev/termination-log    /var/lib/kubelet/pods/<id>/containers/mysql/<file>  ext4
+/ |-/dev/shm                shm                                                 tmpfs
+/ |-...
+/-/sys                      sysfs                                               sysfs
+/ |-/sys/fs/cgroup/memory   cgroup[/path/to/container/cgroup]                   cgroup
+/ |-...
+/-/etc/resolv.conf          /var/lib/docker/containers/<id>/resolv.conf         ext4
+/-/etc/hostname             /var/lib/docker/containers/<id>/hostname            ext4
+/-/etc/hosts                /var/lib/kubelet/pods/<id>/etc-hosts                ext4
+/-/data                     /dev/rbd1                                           ext4
+/-...
