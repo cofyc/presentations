@@ -1,14 +1,13 @@
-# Unshares mount namespace from the parent process, this will create a new mount namespace
-root@linux:/# sudo unshare -m
-# Prepare a volume and mount it into container rootfs
-root@linux:/# mkdir /mnt/test.$$ && mount -t tmpfs tmpfs /mnt/test
-root@linux:/# mkdir /var/lib/docker/aufs/mnt/29af2b1c9b2322d62c10d6d8178ac51b701129dbea9af995d9833affc19df799/data
-root@linux:/# mount --bind /mnt/test /var/lib/docker/aufs/mnt/29af2b1c9b2322d62c10d6d8178ac51b701129dbea9af995d9833affc19df799/data/
-# Change root into rootfs
-root@linux:/# chroot /var/lib/docker/aufs/mnt/29af2b1c9b2322d62c10d6d8178ac51b701129dbea9af995d9833affc19df799
-root@linux:/# mount -t proc proc /proc
+# prepare a container fs
+root@linux:~# mkdir /mnt/rootfs /mnt/tmpfs
+root@linux:~# docker export $(docker create ubuntu) | tar -C /mnt/rootfs -xvf - 
+root@linux:~# unshare -m
+root@linux:~# mount --bind /mnt/rootfs /mnt/tmpfs
+root@linux:~# mount --bind /tmp /mnt/tmpfs/tmp # make /tmp available in new rootfs
+root@linux:~# chroot /mnt/tmpfs
+root@linux:~# mount -t proc proc /proc
 root@linux:/# findmnt -R /
-TARGET  SOURCE FSTYPE OPTIONS
-/              aufs   rw,relatime,si=e19aa34005e0ef0f,dio,dirperm1
-|-/proc proc   proc   rw,relatime
-`-/data tmpfs  tmpfs  rw,relatime,size=100k
+TARGET  SOURCE                                   FSTYPE OPTIONS
+/       /dev/mapper/ubuntu--vg-root[/mnt/rootfs] ext4   rw,relatime,errors=remount-ro,data=ordered
+|-/tmp  tmpfs                                    tmpfs  rw,nosuid,nodev,relatime,size=6291456k
+`-/proc proc                                     proc   rw,relatime

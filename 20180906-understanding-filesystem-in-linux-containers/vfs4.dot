@@ -1,0 +1,34 @@
+digraph G {
+    rankdir = TB
+    nodesep = 0.05
+    node [shape=record]
+    // If the top-level graph has the compound attribute set to true, dot will
+    // allow edges connecting nodes and clusters.
+    compound = true
+
+    subgraph cluster0 {
+        title [label = "host namespace", shape=plaintext]
+        root [label = "/"]
+        title -> root [style=invis]
+        {rank=same; title; root }
+        first [label = "bin/ |dev/ | <etc> etc/ |home/ | lib/ | mnt/ | <proc> proc/ |run/ |sbin/ | sys/ | <tmp> tmp/ |<usr> usr/ | var/ | ..."]
+        root -> first
+        tmpfs [label = "ram filesystem", color=red, shape=ellipse]
+        placeholder [style="invis"]
+        first:tmp -> tmpfs
+        {rank=same placeholder tmpfs}
+    }
+
+    subgraph cluster1 {
+        style = dotted
+        title2 [label = "new namespace", shape=plaintext]
+        root2 [label = "/"]
+        title2 -> root2 [style=invis]
+        {rank=same; title2; root2}
+        first2 [label = "bin/ |dev/ | <etc> etc/ |home/ | lib/ | mnt/ | <proc> proc/ |run/ |sbin/ | sys/ | <tmp> tmp/ |<usr> usr/ | var/ | ..."]
+        root2 -> first2
+        first2:tmp -> tmpfs [style=dotted]
+    }
+
+    placeholder -> root2 [ltail=cluster0, lhead=cluster1] [label="unshares", weight=2]
+}

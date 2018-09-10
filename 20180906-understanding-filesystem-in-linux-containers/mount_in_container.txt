@@ -1,0 +1,6 @@
+root@linux:~# docker run -it --rm --privileged ubuntu /bin/bash
+root@f943818d446e:/# mkdir /mnt/tmpfs
+root@f943818d446e:/# mount -t tmpfs tmpfs /mnt/tmpfs
+root@f943818d446e:/# findmnt /mnt/tmpfs
+TARGET     SOURCE FSTYPE OPTIONS
+/mnt/tmpfs tmpfs  tmpfs  rw,relatime

@@ -1,0 +1,17 @@
+digraph G {
+    rankdir = TB
+    nodesep = 0.05
+    node [shape=record]
+    root [label = "/"]
+    first [label = "bin/ |dev/ | <etc> etc/ |home/ | lib/ | mnt/ | <proc> proc/ |run/ |sbin/ | sys/ | <tmp> tmp/ |<usr> usr/ | var/ | ..."]
+    root -> first
+
+    tmp [label = "<test> test/ | <test2> test2/", fontcolor=red]
+
+    first:tmp -> tmp
+
+    testfs [label = "test filesystem", color=red, shape=ellipse]
+    test2fs [label = "test2 filesystem", color=red, shape=ellipse]
+    tmp:test -> testfs
+    tmp:test2 -> test2fs
+}

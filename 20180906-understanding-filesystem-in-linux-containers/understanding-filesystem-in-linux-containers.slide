@@ -7,18 +7,22 @@ cofyc.jackson@gmail.com
 @cofyc
 https://yechengfu.com
 
+* Typical filesystem view of a container
+
+.code containerfs.txt
+
 * Understand Linux VFS first
 
 *One:* The Virtual File System provides a uniform interface (one big tree
 structure) within the kernel which allows different filesystems to coexist.
 
+.image vfs1.png
+
+* Understand Linux VFS first
+
 Filesystems kernel supports:
 
 .code filesystems.txt
-
-Note:
-
-- VFS: Virtual File System
 
 * Understand Linux VFS first
 
@@ -35,10 +39,18 @@ Detaches file system(s) from the file hierarchy.
 
 * Understand Linux VFS first
 
+.image vfs2.png
+
+* Understand Linux VFS first
+
 *Three*: Each process can have its own mount namespace and do mounting and
 unmounting in it.
 
 .code unshare_mount.txt
+
+* Understand Linux VFS first
+
+.image vfs3.png
 
 * Understand Linux VFS first
 
@@ -53,12 +65,16 @@ Note: Bind remounts a subtree somewhare else, so that its contents are available
 
 * Understand Linux VFS first
 
+.image vfs4.png
+
+* Understand Linux VFS first
+
 *Five*: Mount point can have different states
 
 - shared (k8s: *Bidirectional*): Receive and forward propgation events to peer group.
 - slave (k8s: *HostToContainer*): Recive and don't forward propgation events to peer group.
 - private (k8s: *None*, the default): Do not receive or forward any propgation events.
-- shared and slave: It receives propagation events from its master vfsmount, and also forwards propagation events to its peer group. 
+- shared and slave: It receives propagation events from its master vfsmount, and also forwards propagation events to its peer group.
 - unbindable: Do not receive or forward any propagation events and cannot be bind mounted.
 
 Note:
@@ -68,25 +84,52 @@ Note:
 
 * Understand Linux VFS first
 
-*Six*: More mounting semantics.
+.image vfs5.png
 
-- rbind: Bind recursively, same as bind except it applies to all the mounts in the tree. 
+* Understand Linux VFS first
+
+More mounting semantics.
+
+- rbind: Bind recursively, same as bind except it applies to all the mounts in the tree.
 - move: Move a mountpoint to another place.
 - mount options: ro/rw,sync, etc. and filesystem-specific options.
+- ... details but not important in most cases
 
-* Typical isolated virtual filesystem of a container
+* Review filesystem view of a container again
 
-.code vfs.txt
-
-* How to manage volumes in container?
-
-*One*: Mount in its own namespace.
+.code containerfs.txt
 
 * How to manage volumes in container?
 
-*Two*: Mount in host namespace and bind it into container namespace.
+*One*: Mount in container
 
-This is how container runtime does.
+.code mount_in_container.txt
+
+* How to manage volumes in container?
+
+*Two*: Mount in container namespace before starting container
+
+This is how contaienr runtime mount volumes into container.
+
+.code bindmount_to_container.txt
+
+* How to manage volumes in container?
+
+.image containerfs.png
+
+* Example: Docker storage
+
+- docker bind mounts
+- docker tmpfs
+- docker local volumes
+
+* Example: Kubernetes storage
+
+It supports several types of volumes which are provided by storage drivers. To be used in container, volumes are bind mounted into container.
+
+    docker run -v /path/to/pod/volume:/path/to/container/volume <image> ...
+
+* Questions?
 
 * References
 

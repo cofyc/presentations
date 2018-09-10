@@ -1,17 +1,17 @@
-# Unshares mount namespace from the parent process, this will create a new mount namespace
-root@linux:/# sudo unshare -m
-# Change root into rootfs (e.g. we use a container rootfs for demo, because it contains binaries we need)
-root@linux:/# chroot /var/lib/docker/aufs/mnt/29af2b1c9b2322d62c10d6d8178ac51b701129dbea9af995d9833affc19df799
-# Mount proc filesystem
-root@linux:/# mount -t proc proc /proc
-root@linux:/# findmnt -R /
-TARGET  SOURCE FSTYPE OPTIONS
-/              aufs   rw,relatime,si=e19aa34005e0ef0f,dio,dirperm1
-`-/proc proc   proc   rw,relatime
-# Register a new filesystem
-root@linux:/# mount -t tmpfs tmpfs /tmp
-root@linux:/# findmnt -R /
-TARGET  SOURCE FSTYPE OPTIONS
-/              aufs   rw,relatime,si=e19aa34005e0ef0f,dio,dirperm1
-|-/proc proc   proc   rw,relatime
-`-/tmp  tmpfs  tmpfs  rw,relatime
+# run shell and unshare mount namespace from parent process, this will create a new mount namespace
+root@linux:~# unshare -m /bin/bash
+root@linux:~# findmnt -R /tmp
+TARGET SOURCE FSTYPE OPTIONS
+/tmp   tmpfs  tmpfs  rw,nosuid,nodev,relatime,size=6291456k
+# mount a filesystem in new namespace
+root@linux:~# mkdir /tmp/newmnt && mount -t tmpfs tmpfs /tmp/newmnt 
+root@linux:~# findmnt -R /tmp
+TARGET        SOURCE FSTYPE OPTIONS
+/tmp          tmpfs  tmpfs  rw,nosuid,nodev,relatime,size=6291456k
+└─/tmp/newmnt tmpfs  tmpfs  rw,relatime
+# exit and back into old shell which is in host namespace
+root@linux:~# exit
+# new filesystem mounted in new namespace is hidden from host namespace
+root@linux:~# findmnt -R /tmp
+TARGET SOURCE FSTYPE OPTIONS
+/tmp   tmpfs  tmpfs  rw,nosuid,nodev,relatime,size=6291456k

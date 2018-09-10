@@ -1,0 +1,31 @@
+digraph G {
+    rankdir = TB
+    nodesep = 0.05
+    node [shape=record]
+    // If the top-level graph has the compound attribute set to true, dot will
+    // allow edges connecting nodes and clusters.
+    compound = true
+
+    subgraph cluster0 {
+        title [label = "host namespace", shape=plaintext]
+        root [label = "/"]
+        title -> root [style=invis]
+        {rank=same; title; root }
+        first [label = "bin/ |dev/ | <etc> etc/ |home/ | lib/ | mnt/ | <proc> proc/ |run/ |sbin/ | sys/ | <tmp> tmp/ |<usr> usr/ | var/ | ..."]
+        root -> first
+    }
+
+    subgraph cluster1 {
+        style = dotted
+        title2 [label = "new namespace", shape=plaintext]
+        root2 [label = "/"]
+        title2 -> root2 [style=invis]
+        {rank=same; title2; root2}
+        first2 [label = "bin/ |dev/ | <etc> etc/ |home/ | lib/ | mnt/ | <proc> proc/ |run/ |sbin/ | sys/ | <tmp> tmp/ |<usr> usr/ | var/ | ..."]
+        root2 -> first2
+        tmp2 [label = "<newmnt> newmnt/ | ...", color=red]
+        first2:tmp -> tmp2
+    }
+
+    first -> root2 [ltail=cluster0, lhead=cluster1] [label="unshares mount namespace from the parent"]
+}

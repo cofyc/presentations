@@ -1,0 +1,39 @@
+digraph G {
+    rankdir = TB
+    nodesep = 0.05
+    node [shape=record]
+    // If the top-level graph has the compound attribute set to true, dot will
+    // allow edges connecting nodes and clusters.
+    compound = true
+
+    rootfs [label = "bin/ |dev/ | <etc> etc/ |home/ | lib/ | <mnt> mnt/ | <proc> proc/ |run/ |sbin/ | sys/ | <tmp> tmp/ |<usr> usr/ | <var> var/ | ..."]
+
+    tmpfs [label = "<data> data/ | ..." ]
+    rootfs:tmp -> tmpfs
+
+    {rank=same; tmpfs; containerfs}
+
+    containerfs [label="rootfs/"]
+
+    // root [label="/"]
+    // root -> rootfs 
+    rootfs:mnt -> containerfs
+
+    subgraph cluster0 {
+        style=invis
+        datafs [label = "data filesystem", color=red]
+    }
+    tmpfs:data -> datafs [weight=2]
+
+    subgraph cluster1 {
+        label = "contaienr namespace"
+        style = dotted
+        // containerroot [label="/"]
+        containerrootfs [label="bin/ | dev / | etc/ | <data> data/ | <proc> proc/ |..."]
+        // containerroot -> containerrootfs
+        containerrootfs:data -> datafs [label="bind"]
+        procfs [label = "fs/ | bus/ | driver/ | ...", color=blue]
+        containerrootfs:proc -> procfs
+    }
+    containerfs -> containerrootfs [lhead=cluster1]
+}

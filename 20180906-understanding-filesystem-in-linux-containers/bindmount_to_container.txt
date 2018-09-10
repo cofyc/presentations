@@ -1,0 +1,18 @@
+# prepare a container fs
+root@linux:~# mkdir /mnt/rootfs /mnt/tmpfs
+root@linux:~# docker export $(docker create ubuntu) | tar -C /mnt/rootfs -xvf - 
+# prepare a data volume in host namespace
+root@linux:~# mkdir /tmp/data && mount -t tmpfs tmpfs /tmp/data 
+root@linux:~# unshare -m
+# remount everything in new mount namespace as private
+root@linux:~# mount / --make-rprivate
+root@linux:~# mount --bind /mnt/rootfs /mnt/tmpfs
+root@linux:~# pivot_root /mnt/tmpfs /mnt/tmpfs/old-root
+# this is for mount & umount, not needed if we call syscall directly
+root@linux:~# mount -t proc proc /proc 
+# bind mount `/tmp/data` into container mount namespace
+root@linux:~# mount --bind /old-root/tmp/data/ /data
+# don't need host root filesystem anymore
+root@linux:~# umount -l /old-root
+# start container
+root@linux:~# exec <ENTRYPOINT> 

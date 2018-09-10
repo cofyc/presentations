@@ -1,0 +1,18 @@
+digraph G {
+    rankdir = TB
+    nodesep = 0.05
+    node [shape=record]
+    root [label = "/"]
+    first [label = "bin/ |dev/ | <etc> etc/ |home/ | lib/ | mnt/ | <proc> proc/ |run/ |sbin/ | sys/ | tmp/ |<usr> usr/ | var/ | ..."]
+    root -> first
+
+    etc [label = "hostname | init.d/ | cron.d/ | systemd/ | ..."]
+    usr [label = "bin/ | include/ | lib/ | <local> local/ | ..."]
+    proc [label = "fs/ | bus/ | driver/ | ..." ]
+    first:etc -> etc 
+    first:usr -> usr 
+    first:proc -> proc
+    
+    local [label = "bin/ | include/ | lib/ | share/ | ..."]
+    usr:local -> local
+}
