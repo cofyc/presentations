@@ -121,7 +121,9 @@ This is how contaienr runtime mount volumes into container.
 
 - docker bind mounts
 - docker tmpfs
-- docker local volumes
+- docker volumes
+  - local (builtin)
+  - ...
 
 * Example: Kubernetes storage
 
