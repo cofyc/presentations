@@ -16,7 +16,7 @@ cat <<EOF > README.md
 
 EOF
 
-for f in $(find . -type f -name '*.slide' -printf '%P\n'); do
+for f in $(find . -type f -name '*.slide' -printf '%P\n' | sort -n -r); do
     link="https://talks.godoc.org/github.com/cofyc/presentations/""$f"
     printf -- "- [%s](%s)\n" "$f" "$link" >> README.md
 done
