@@ -1,0 +1,117 @@
+Participate in Kubernetes community
+How to contribute to Kubernetes
+20 Nov 2018
+
+Yecheng Fu
+fuyecheng@qiniu.com
+@cofyc
+https://yechengfu.com
+
+* 了解 Kubernetes 社区组织架构
+
+- Committees 领导社区事务的委员会，大多数讨论公开，敏感话题可能会是私密的
+  - steering committee (社区选举产生)
+  - security committee
+  - code of conduct committe
+- Special Interest Groups (SIGs) 专注项目特定领域的兴趣组，比如 API 、存储、网络、应用、大数据等
+  - https://github.com/kubernetes/community/blob/master/sig-list.md
+- Working Groups 临时存在的工作组，一般涉及跨 SIGS 的事情
+
+* 了解 Kubernetes 社区
+
+- 网站：https://kubernetes.io (https://github.com/kubernetes/website)
+- 加入 Slack 频道: https://kubernetes.slack.com
+- 中国开发者：https://kubernetes.slack.com/messages/cn-dev
+- 订阅开发者邮件列表: kubernetes-dev@googlegroups.com / https://groups.google.com/forum/#!forum/kubernetes-dev
+- 论坛：https://discuss.kubernetes.io/
+- StackOverflow: https://stackoverflow.com/questions/tagged/kubernetes
+- 社区文档：https://github.com/kubernetes/community
+- 更多参见：https://kubernetes.io/community/
+
+* 如何参与社区开发
+
+- 签署贡献者协议
+- 了解 Github/Git
+- 了解 Kubernetes Issue/PR 工作流程
+- 参与社区开发
+- 1) 文档贡献
+- 2) 基于 Kubernetes 开发
+- 3) Kubernetes 开发
+
+* 签署贡献者协议
+
+具体步骤见：https://github.com/kubernetes/community/blob/master/CLA.md
+
+注：开发者选择 "Individual signup“ 即可。
+
+每个 PR 会有一项 CI 检查，判断是否已经签署了 CLA 协议。已经签署会加上 cncf-cla: yes 标签，没有会提示 cncf-cla: no ，并告知如何签署。
+
+* 了解 Github/Git
+
+github: https://help.github.co
+git: https://git-scm.com/doc
+
+* 了解 Kubernetes Issue/PR 工作流程
+
+Kubernetes 社区里 Issue/PR 基于 @k8s-ci-robot 机器人。
+
+我们可以在 https://github.com/kubernetes-sigs/contributor-playground 项目里随意创建 issue/pr 与其交互。
+
+例子：
+
+ISSUE: https://github.com/kubernetes-sigs/contributor-playground/issues/98
+PR: https://github.com/kubernetes-sigs/contributor-playground/pull/97
+
+* 参与社区开发：文档贡献
+
+项目地址：https://github.com/kubernetes/website
+如何参与：https://kubernetes.io/docs/contribute/start/
+
+<基于 https://github.com/kubernetes/website/pull/8062 例子演示如何修复文档错误>
+
+* 基于 Kubernetes 开发
+
+公司内许多项目都是基于 Kubernetes 开发，比较关键的是:
+
+- e2e 测试
+  - 基于 minikube
+  - 基于 kubeadm 或 ./hack/local-up-cluster.sh
+  - 其他自定义方案
+- k8s 依赖管理，所有包需保持一个 k8s 版本
+
+* Kubernetes 开发
+
+- 需要准备好 linux 机器
+
+- 本地运行 https://github.com/kubernetes/community/blob/master/contributors/devel/running-locally.md
+- 本地编译
+- 本地测试 https://github.com/kubernetes/community/blob/master/contributors/devel/testing.md
+
+* 如何寻找贡献点
+
+- 项目 issues, bug/feature/"first good issue" 或按 sig 查找
+- 日常工作或个人使用中遇到 bug ，遇到任何问题都深入研究，尝试自己找到问题根源并解决。
+- 社区计划，通过阅读社区文档与参与讨论后了解
+- 周边项目
+
+https://github.com/kubernetes/
+https://github.com/kubernetes-sigs/
+https://github.com/kubernetes-incubator/
+
+* 我们的 Kubernetes 分支
+
+https://github.com/qbox/kubernetes
+
+* 任务
+
+- Task 1: 签署 CLA
+- Task 2: 加入 Kubernetes Slack 频道 #kubernetes-users, #kubernetes-dev, #cn-dev and one of SIGs
+- Task 3: 订阅 kubernetes-dev@googlegroups.com / https://groups.google.com/forum/#!forum/kubernetes-dev
+- Task 4: https://github.com/kubernetes-sigs/contributor-playground 上创建一个 Issue 和一个 PR 并实验 @k8s-ci-robot 命令
+
+* Questions?
+
+* References
+
+- https://github.com/kubernetes/community/tree/master/contributors/guide
+- https://github.com/qbox/kirk-community/blob/master/devel/participate-in-kubernetes-community.md
