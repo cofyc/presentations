@@ -7,6 +7,17 @@ fuyecheng@qiniu.com
 @cofyc
 https://yechengfu.com
 
+* 为什么参与开源社区
+
+没有动力/好处的事情，是不成立的。勉强进行，也坚持不下去的。开源社区是一个以技术论英雄，非常适合技术人员实现自我的地方：
+
+- 展示欲、成就感、认同感
+- 技术收获
+- 结交朋友
+- 帮助他人的快乐
+
+.image mypopularrepos.png _ 1000
+
 * 了解 Kubernetes 社区组织架构
 
 - Committees 领导社区事务的委员会，大多数讨论公开，敏感话题可能会是私密的
@@ -60,7 +71,9 @@ Kubernetes 社区里 Issue/PR 基于 @k8s-ci-robot 机器人。
 例子：
 
 ISSUE: https://github.com/kubernetes-sigs/contributor-playground/issues/98
-PR: https://github.com/kubernetes-sigs/contributor-playground/pull/97
+PR: https://github.com/kubernetes-sigs/contributor-playground/pull/99
+
+任何 github 上与你相关的动作，都会使用邮件通知，注意打开邮件通知或定时检查邮件。
 
 * 参与社区开发：文档贡献
 
@@ -98,11 +111,23 @@ https://github.com/kubernetes/
 https://github.com/kubernetes-sigs/
 https://github.com/kubernetes-incubator/
 
+* Kubernetes membership
+
+- member
+  - multiple contributions to the project (issues, prs, reviews, discussion in community)
+  - subscribed to kubernetes-dev@googlegroups.com
+  - sponsored by 2 reviewers or approvers from different companies
+- reviewer
+- approver
+- subproject owner
+
+https://github.com/kubernetes/community/blob/master/community-membership.md
+
 * 我们的 Kubernetes 分支
 
 https://github.com/qbox/kubernetes
 
-* 任务
+* 行动起来
 
 - Task 1: 签署 CLA
 - Task 2: 加入 Kubernetes Slack 频道 #kubernetes-users, #kubernetes-dev, #cn-dev and one of SIGs
