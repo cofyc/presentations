@@ -19,7 +19,7 @@ https://yechengfu.com
 
 .image mypopularrepos.png _ 1000
 
-* 了解 Kubernetes 社区组织架构
+* 了解 Kubernetes 社区: 组织架构
 
 - Committees 领导社区事务的委员会，大多数讨论公开，敏感话题可能会是私密的
   - steering committee (社区选举产生)
@@ -29,7 +29,7 @@ https://yechengfu.com
   - https://github.com/kubernetes/community/blob/master/sig-list.md
 - Working Groups 临时存在的工作组，一般涉及跨 SIGS 的事情
 
-* 了解 Kubernetes 社区
+* 了解 Kubernetes 社区: 沟通渠道
 
 - 网站：https://kubernetes.io (https://github.com/kubernetes/website)
 - 加入 Slack 频道: https://kubernetes.slack.com
@@ -40,15 +40,16 @@ https://yechengfu.com
 - 社区文档：https://github.com/kubernetes/community
 - 更多参见：https://kubernetes.io/community/
 
-* 如何参与社区开发
+* 参与 Kubernetes 社区
 
 - 签署贡献者协议
 - 了解 Github/Git
 - 了解 Kubernetes Issue/PR 工作流程
-- 参与社区开发
+- Submit/Review PRs
 - 1) 文档贡献
 - 2) 基于 Kubernetes 开发
 - 3) Kubernetes 开发
+- Discussion on issues/technical topics (github/slack/mails, etc)
 
 * 签署贡献者协议
 
@@ -82,7 +83,30 @@ PR: https://github.com/kubernetes-sigs/contributor-playground/pull/99
 
 任何 github 上与你相关的动作，都会使用邮件通知，注意打开邮件通知或定时检查邮件。
 
-* 参与社区开发：文档贡献
+* Code Review
+
+For authors:
+
+- follow code conventions
+- write good commit messages
+- break large changes into a logical series of smaller patches
+- label PRs with appropriate SIGs and reviewers
+
+For reviewrs:
+
+- follow code of conduct
+- promote a collaborative, respectful community.
+
+https://github.com/kubernetes/community/tree/master/contributors/guide#code-review
+https://github.com/kubernetes/community/blob/master/contributors/guide/community-expectations.md#code-review
+
+* Code of Conduct / 行为准则
+
+https://github.com/cncf/foundation/blob/master/code-of-conduct.md
+
+一句话: 对事不对人
+
+* 文档贡献
 
 项目地址：https://github.com/kubernetes/website
 如何参与：https://kubernetes.io/docs/contribute/start/
@@ -117,12 +141,6 @@ PR: https://github.com/kubernetes-sigs/contributor-playground/pull/99
 https://github.com/kubernetes/
 https://github.com/kubernetes-sigs/
 https://github.com/kubernetes-incubator/
-
-* Code of Conduct / 行为准则
-
-对事不对人
-
-https://github.com/cncf/foundation/blob/master/code-of-conduct.md
 
 * Kubernetes membership
 
