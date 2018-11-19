@@ -57,6 +57,12 @@ https://yechengfu.com
 
 每个 PR 会有一项 CI 检查，判断是否已经签署了 CLA 协议。已经签署会加上 cncf-cla: yes 标签，没有会提示 cncf-cla: no ，并告知如何签署。
 
+个人 CLA: https://github.com/cncf/cla/blob/master/individual-cla.pdf
+
+- 同意将著作权和专利权授权给 CNCF
+- 贡献需是自己的创作，涉及第三方代码需包含相关 licenses 和限制说明
+- 无需必须对自己的贡献提供后续支持
+
 * 了解 Github/Git
 
 github: https://help.github.co
@@ -110,6 +116,12 @@ PR: https://github.com/kubernetes-sigs/contributor-playground/pull/99
 https://github.com/kubernetes/
 https://github.com/kubernetes-sigs/
 https://github.com/kubernetes-incubator/
+
+* Code of Conduct / 行为准则
+
+对事不对人
+
+https://github.com/cncf/foundation/blob/master/code-of-conduct.md
 
 * Kubernetes membership
 
